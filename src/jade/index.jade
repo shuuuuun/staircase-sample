@@ -24,15 +24,19 @@ html(lang="ja")
       
       div.staircase
         div.staircase__screen--select#screen-select
-          //- h2 screen--select
-          ul
+          ul.onlypc
             li
               button#StartCamera.btn-camera(type="button") カメラで撮影する
             li
               button#StartUpload.btn-upload(type="button") 画像をアップロードする
+          div.onlysp
+            form#Upload(enctype="multipart/form-data")
+              p#FileSelect.btn-upload
+                canvas#file_img_canvas.hidden
+                input(type="file" name="img" accept="image/*")
+                button(type="button") カメラで撮影する／画像をアップロードする
         
-        div.staircase__screen--camera#screen-camera
-          //- h2 screen--camera
+        div.staircase__screen--camera#screen-camera.onlypc
           div#Camera
             video#Video(width="400" height="300" autoplay="1")
           div#Preview
@@ -43,17 +47,21 @@ html(lang="ja")
           p.btn-navigate-upload
             button(type="button") やっぱ画像をアップロード
         
-        div.staircase__screen--upload#screen-upload
-          //- h2 screen--upload
+        div.staircase__screen--upload#screen-upload.onlypc
           div#DragAndDrop
           form#UploadForm(enctype="multipart/form-data")
-            //- p#FileSelect.btn-upload
-              input(type="file" name="img" accept="image/*")
-              button(type="button") アップロード！
             input(type="file" name="img" accept="image/*")
             button#UploadBtn(type="button") アップロード！
           p.btn-navigate-camera
             button(type="button") やっぱカメラで撮影する
+        
+        div.onlysp.hidden
+          div#Camera
+            video#Video(width="400" height="300" autoplay="1")
+          canvas#Canvas(width="400" height="300")
+          canvas#CanvasDummy(width="400" height="300")
+          div#DragAndDrop
+        
       
       div#Modal.modal
         div.modal__bg

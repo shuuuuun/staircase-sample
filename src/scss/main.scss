@@ -11,7 +11,7 @@ $MAIN_FONT: YuGothic, '游ゴシック', "ヒラギノ角ゴPro W3", "Hiragino K
   display: none;
 }
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 // ------------------------------
@@ -27,6 +27,21 @@ body * {
 .wrapper {
   // min-width: 1024px;
   font-size: 1.6rem;
+}
+
+
+// ------------------------------
+// sp
+// ------------------------------
+.isSP {
+  
+  .onlysp {
+    display: initial;
+  }
+  
+  .onlypc {
+    display: none;
+  }
 }
 
 

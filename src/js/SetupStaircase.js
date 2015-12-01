@@ -111,7 +111,6 @@
       
       // 撮影スタートボタン
       this.$btnSelectCamera.on('click', function(e) {
-        // $('.screen[data-step="0"]').hide();
         // _this.$screenSelect.hide();
         // _this.$screenCamera.show();
         _this.switchScreenCamera();
@@ -119,7 +118,6 @@
       });
       // アップロードスタートボタン
       this.$btnSelectUpload.on('click', function() {
-        // $('.screen[data-step="0"]').hide();
         // _this.$screenSelect.hide();
         // _this.$screenUpload.show();
         _this.switchScreenUpload();

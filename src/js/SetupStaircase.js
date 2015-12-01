@@ -25,12 +25,16 @@
     this.$screenSelect = $('#screen-select');
     this.$screenCamera = $('#screen-camera');
     this.$screenUpload = $('#screen-upload');
-    this.$btnSelectCamera = this.$screenSelect.find('.btn-camera');
-    this.$btnSelectUpload = this.$screenSelect.find('.btn-upload');
+    // this.$btnStartCamera = $('#StartCamera');
+    // this.$btnStartUpload = $('#StartUpload');
+    this.$btnStartCamera = $('.btn-camera');
+    this.$btnStartUpload = $('.btn-upload');
+    this.$btnStartCancel = $('.btn-cancel');
+    // this.$btnSelectCamera = this.$screenSelect.find('.btn-camera');
+    // this.$btnSelectUpload = this.$screenSelect.find('.btn-upload');
     this.$navigateUpload = this.$screenCamera.find('.btn-navigate-upload');
     this.$navigateCamera = this.$screenUpload.find('.btn-navigate-camera');
     this.$uploadForm = $('#UploadForm');
-    this.$btnStartCamera = $('#StartCamera');
     this.$btnCapture = $('#CaptureBtn');
     this.$btnUpload = $('#UploadBtn')
     
@@ -61,11 +65,21 @@
       this.$navigateCamera.hide();
     }
     
-    // カメラ起動
-    // this.$btnStartCamera.on('click', function(e) {
-    //   e.preventDefault();
-    //   _this.camera.powerOn();
-    // });
+    // screen制御
+    this.$screenCamera.hide();
+    this.$screenUpload.hide();
+    
+    // 撮影スタートボタン
+    this.$btnStartCamera.on('click', function(e) {
+      _this.switchScreenCamera();
+      // ga('send', 'event', 'screen-camera', 'show', 'from-screen-select');
+    });
+    
+    // アップロードスタートボタン
+    this.$btnStartUpload.on('click', function() {
+      _this.switchScreenUpload();
+      // ga('send', 'event', 'screen-upload', 'show', 'from-screen-select');
+    });
     
     // 撮影ボタン
     this.$btnCapture.on('click', function(e) {
@@ -79,11 +93,8 @@
       // _this.postImage(_this.previewCanvas);
     });
     
-    // ファイルアップロード
+    // アップロードボタン
     this.$btnUpload.on('click', function(e) {
-    // this.$inputUpload.on('change', function(e) {
-    // this.$input.on('change', function(e) {
-      // _this.$btnCapture.attr('disabled', true);
       _this.$btnUpload.attr('disabled', true);
       _this.$inputUpload.addClass('disabled');
       _this.$navigateCamera.hide();
@@ -103,50 +114,12 @@
     this.modal.$el.on('click', this.modalCloseTargetSelector, function(e) {
       _this.modal.hide();
     });
-    
-    // screen制御
-    if (ns.ua.isPC) {
-      this.$screenCamera.hide();
-      this.$screenUpload.hide();
-      
-      // 撮影スタートボタン
-      this.$btnSelectCamera.on('click', function(e) {
-        // _this.$screenSelect.hide();
-        // _this.$screenCamera.show();
-        _this.switchScreenCamera();
-        // ga('send', 'event', 'screen-camera', 'show', 'from-screen-select');
-      });
-      // アップロードスタートボタン
-      this.$btnSelectUpload.on('click', function() {
-        // _this.$screenSelect.hide();
-        // _this.$screenUpload.show();
-        _this.switchScreenUpload();
-        // ga('send', 'event', 'screen-upload', 'show', 'from-screen-select');
-      });
-      
-      this.$navigateCamera.on('click', function() {
-        // _this.$screenUpload.hide();
-        // _this.$screenUpload.find('.error').hide();
-        // _this.camera.powerOn();
-        // _this.$screenCamera.show();
-        _this.switchScreenCamera();
-        // ga('send', 'event', 'screen-camera', 'show', 'from-screen-upload');
-      });
-      this.$navigateUpload.on('click', function() {
-        // _this.$screenCamera.hide();
-        // _this.$screenCamera.find('.error').hide();
-        // _this.camera.powerOff();
-        // _this.$screenUpload.show();
-        _this.switchScreenUpload();
-        // ga('send', 'event', 'screen-upload', 'show', 'from-screen-camera');
-      });
-    }
   };
   
   ns.SetupStaircase.prototype.switchScreenCamera = function() {
     this.$screenSelect.hide();
     this.$screenUpload.hide();
-    // this.$screenUpload.find('.error').hide();
+    this.$screenUpload.find('.error').hide();
     this.camera.powerOn();
     this.$screenCamera.show();
   };

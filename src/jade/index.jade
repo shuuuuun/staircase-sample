@@ -44,16 +44,22 @@ html(lang="ja")
             canvas#CanvasDummy(width="400" height="300" style="display: none;")
           p.btn-shooting
             button#CaptureBtn(type="submit") キャプチャ！
-          p.btn-navigate-upload
+          //- p.btn-navigate-upload
+          p.btn-upload
             button(type="button") やっぱ画像をアップロード
+          p.btn-cancel
+            button(type="button") キャンセル
         
         div.staircase__screen--upload#screen-upload.onlypc
           div#DragAndDrop
           form#UploadForm(enctype="multipart/form-data")
             input(type="file" name="img" accept="image/*")
             button#UploadBtn(type="button") アップロード！
-          p.btn-navigate-camera
+          //- p.btn-navigate-camera
+          p.btn-camera
             button(type="button") やっぱカメラで撮影する
+          p.btn-cancel
+            button(type="button") キャンセル
         
         div.onlysp.hidden
           div#Camera

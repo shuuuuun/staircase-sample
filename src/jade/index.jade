@@ -1,0 +1,108 @@
+doctype html
+html(lang="ja")
+  head
+    include partials/_variables
+    include partials/_meta
+    
+    link(rel="stylesheet" href="./css/main.css")
+    //- link(rel="stylesheet" href="./css/sp/main.css")
+    
+    script(src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js")
+    
+    script(src="./js/lib/eventemitter2.js")
+    script(src="./js/lib/Staircase.js")
+    script(src="./js/Util.js")
+    script(src="./js/SetupStaircase.js")
+    script(src="./js/main.js")
+    
+  body
+    include partials/_ua
+    +ua("App")
+    
+    div.wrapper
+      h1 Staircase
+      
+      div.staircase
+        div.staircase__screen--select#screen-select
+          //- h2 screen--select
+          ul
+            li
+              button#StartCamera.btn-camera(type="button") カメラで撮影する
+            li
+              button#StartUpload.btn-upload(type="button") 画像をアップロードする
+        
+        div.staircase__screen--camera#screen-camera
+          //- h2 screen--camera
+          div#Camera
+            video#Video(width="400" height="300" autoplay="1")
+          div#Preview
+            canvas#Canvas(width="400" height="300")
+            canvas#CanvasDummy(width="400" height="300" style="display: none;")
+          p.btn-shooting
+            button#CaptureBtn(type="submit") キャプチャ！
+          p.btn-navigate-upload
+            button(type="button") やっぱ画像をアップロード
+        
+        div.staircase__screen--upload#screen-upload
+          //- h2 screen--upload
+          div#DragAndDrop
+          form#UploadForm(enctype="multipart/form-data")
+            //- p#FileSelect.btn-upload
+              input(type="file" name="img" accept="image/*")
+              button(type="button") アップロード！
+            input(type="file" name="img" accept="image/*")
+            button#UploadBtn(type="button") アップロード！
+          p.btn-navigate-camera
+            button(type="button") やっぱカメラで撮影する
+      
+      div#Modal.modal
+        div.modal__bg
+        div.modal__content
+          p.modal__error
+          div.btn-close ×
+      
+      
+      .container
+        //- div
+          ul
+            li.onlypc
+              button#StartCamera(type="button" class="bgimg-button btn-camera") カメラで撮影する
+            li
+              div.onlysp
+                form#Upload(enctype="multipart/form-data")
+                  p#FileSelect.btn-upload
+                    canvas#file_img_canvas(style="display:none")
+                    input.file(type="file" name="img" accept="image/*")
+                    button(type="button") 画像をアップロード
+              div.onlypc
+                button(type="button" class="bgimg-button btn-upload") 画像をアップロード
+          
+          
+          div.onlysp
+            div#Camera.camera
+              video#Video(width="400" height="300" autoplay="1")
+            canvas#Canvas(width="400" height="300")
+            canvas#CanvasDummy(width="400" height="300")
+            div#DragAndDrop.face-canvas
+        
+          div.screen.screen--camera.onlypc(data-step="1")
+            div.face-canvas
+              div#Camera.camera
+                video#Video(width="400" height="300" autoplay="1")
+              div#Preview.preview
+                canvas#Canvas(width="400" height="300")
+                canvas#CanvasDummy(width="400" height="300" style="display: none;")
+            p.btn-shooting
+              button#Capture(type="submit") 撮影する
+            p.btn-navigate-upload
+              button(type="button") 画像をアップロード
+          
+          div.screen.screen--upload(data-step="1")
+            div#DragAndDrop.face-canvas
+            form#Upload(enctype="multipart/form-data")
+              p#FileSelect.btn-upload
+                input.file(type="file" name="img" accept="image/*")
+                button(type="button") 画像をアップロード
+            p.btn-navigate-camera
+              button(type="button") カメラで撮影する
+      

@@ -185,50 +185,13 @@
   };
   
   ns.SetupStaircase.prototype.postImage = function(instance) {
-    var base64, canvas, data, _this;
-    _this = this;
-    canvas = instance.getCanvas();
-    base64 = canvas.toDataURL('image/png').replace(/^.*,/, '');
-    data = {
-      img: base64
-    };
-    if (Staircase.Util.ua.isIOS) {
-      data.device = 'ios';
-    } else if (Staircase.Util.ua.isAndroid) {
-      data.device = 'android';
-    }
-    this.$modalError.attr('class', 'error');
     $.ajax({
-      url: '/face.json',
+      url: '/',
       method: 'POST',
       data: data,
       beforeSend: function() {
-        _this.$btnCapture.attr('disabled', true);
-        _this.$btnUpload.attr('disabled', true);
-        _this.$navigateCamera.hide();
-        _this.$navigateUpload.hide();
       },
       success: function(response) {
-        if (response.status === 'ok') {
-          // ga('send', 'event', 'send-face', 'success', location.href);
-          $(location).attr('href', response.redirect_path);
-        } else {
-          _this.$btnCapture.attr('disabled', false);
-          _this.$btnUpload.attr('disabled', false);
-          _this.$navigateCamera.show();
-          _this.$navigateUpload.show();
-          if (instance.type === 'camera') {
-            instance.reset();
-            _this.camera.powerOn();
-            _this.$modalError.html('画像の処理に失敗しました。<br>もう一度撮影し直してください。');
-            // ga('send', 'event', 'send-face', 'failed', 'ng-camera');
-          }
-          else if (instance.type === 'file') {
-            _this.$modalError.html('画像の処理に失敗しました。<br>別の画像をアップロードしてください。');
-            // ga('send', 'event', 'send-face', 'failed', 'ng-upload');
-          }
-          _this.modal.show();
-        }
       },
       complete: function() {}
     });

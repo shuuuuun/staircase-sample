@@ -16,10 +16,6 @@
     this.previewImage = new Staircase.PreviewCanvas('#PreviewImage');
     this.previewImage.type = 'file';
     this.dnd = new Staircase.DragAndDrop('#DragAndDrop');
-    this.modal = new Staircase.Modal({
-      id: '#Modal',
-      page: '.container'
-    });
     
     // elements
     this.$camera = $('#Camera');
@@ -42,20 +38,9 @@
     this.$btnCapture = $('#CaptureBtn');
     this.$btnUpload = $('.btn-upload button'); // $('#UploadBtn');
     this.$inputFile = $('#InputFile');
-    
     // this.$btnShooting = $('.btn-shooting button')
     // this.$btnUpload = $('.btn-upload button')
-    
     // this.$inputUpload = this.$uploadForm.find('input[type="file"]');
-    this.$modalError = this.modal.$el.find('.modal__error');
-    this.modalCloseTargetSelector = '.modal-bg, .btn-close';
-    
-    // エラー判定
-    var queryString = Staircase.Util.getQueryString();
-    if (queryString.mp_status === 'ng') {
-      this.$modalError.html('画像の処理に失敗しました。<br>別の画像をアップロードしてください。');
-      this.modal.show();
-    }
     
     // event
     this.eventify();
@@ -149,11 +134,6 @@
       // ga('send', 'event', 'area-dnd', 'drag-and-drop', location.href);
       _this.previewImage.draw(image, image.width, image.height);
       // _this.postImage(_this.previewImage);
-    });
-    
-    // モーダル
-    this.modal.$el.on('click', this.modalCloseTargetSelector, function(e) {
-      _this.modal.hide();
     });
   };
   

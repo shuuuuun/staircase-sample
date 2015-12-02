@@ -26,9 +26,9 @@ html(lang="ja")
         div.staircase__screen--select#screen-select
           ul.onlypc
             li
-              button#StartCamera.btn-camera(type="button") カメラで撮影する
+              button#StartCamera.btn-navigate-camera(type="button") カメラで撮影する
             li
-              button#StartUpload.btn-upload(type="button") 画像をアップロードする
+              button#StartUpload.btn-navigate-upload(type="button") 画像をアップロードする
           div.onlysp
             form#Upload(enctype="multipart/form-data")
               p#FileSelect.btn-upload
@@ -43,9 +43,10 @@ html(lang="ja")
           p
             button#CaptureBtn(type="submit") キャプチャ！
           p.btn-again
-            button(type="button") やり直す
-          //- p.btn-navigate-upload
+            button(type="button" disabled) やり直す
           p.btn-upload
+            button(type="button" disabled) この画像をアップロード！
+          p.btn-navigate-upload
             button(type="button") やっぱ画像をアップロード
           p.btn-cancel
             button(type="button") キャンセル
@@ -59,10 +60,9 @@ html(lang="ja")
           p
             input#InputFile(type="file" accept="image/*")
           canvas#PreviewImage(width="400" height="300")
-          p
-            button#UploadBtn(type="button") この画像をアップロード！
-          //- p.btn-navigate-camera
-          p.btn-camera
+          p.btn-upload
+            button#UploadBtn(type="button" disabled) この画像をアップロード！
+          p.btn-navigate-camera
             button(type="button") やっぱカメラで撮影する
           p.btn-cancel
             button(type="button") キャンセル

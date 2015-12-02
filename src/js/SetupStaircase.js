@@ -30,18 +30,18 @@
     this.$screenUpload = $('#screen-upload');
     // this.$btnStartCamera = $('#StartCamera');
     // this.$btnStartUpload = $('#StartUpload');
-    this.$btnStartCamera = $('.btn-camera');
-    this.$btnStartUpload = $('.btn-upload');
-    this.$btnCancel = $('.btn-cancel');
-    this.$btnAgain = $('.btn-again');
+    this.$btnNavigateCamera = $('.btn-navigate-camera');
+    this.$btnNavigateUpload = $('.btn-navigate-upload');
+    this.$btnCancel = $('.btn-cancel button');
+    this.$btnAgain = $('.btn-again button');
     // this.$btnSelectCamera = this.$screenSelect.find('.btn-camera');
     // this.$btnSelectUpload = this.$screenSelect.find('.btn-upload');
-    this.$navigateUpload = this.$screenCamera.find('.btn-navigate-upload');
-    this.$navigateCamera = this.$screenUpload.find('.btn-navigate-camera');
+    // this.$navigateUpload = this.$screenCamera.find('.btn-navigate-upload');
+    // this.$navigateCamera = this.$screenUpload.find('.btn-navigate-camera');
     // this.$uploadForm = $('#UploadForm');
     this.$btnCapture = $('#CaptureBtn');
-    this.$btnUpload = $('#UploadBtn')
-    this.$inputFile = $('#InputFile')
+    this.$btnUpload = $('.btn-upload button'); // $('#UploadBtn');
+    this.$inputFile = $('#InputFile');
     
     // this.$btnShooting = $('.btn-shooting button')
     // this.$btnUpload = $('.btn-upload button')
@@ -66,8 +66,8 @@
     
     // カメラがあるか
     if (this.camera.isSupport == null) {
-      this.$btnStartCamera.hide();
-      this.$navigateCamera.hide();
+      this.$btnNavigateCamera.hide();
+      // this.$navigateCamera.hide();
     }
     
     // screen制御
@@ -76,13 +76,13 @@
     this.switchScreenSelect();
     
     // 撮影スタートボタン
-    this.$btnStartCamera.on('click', function(e) {
+    this.$btnNavigateCamera.on('click', function(e) {
       _this.switchScreenCamera();
       // ga('send', 'event', 'screen-camera', 'show', 'from-screen-select');
     });
     
     // アップロードスタートボタン
-    this.$btnStartUpload.on('click', function() {
+    this.$btnNavigateUpload.on('click', function() {
       _this.switchScreenUpload();
       // ga('send', 'event', 'screen-upload', 'show', 'from-screen-select');
     });
@@ -104,9 +104,11 @@
       _this.previewCanvas.draw(video);
       // $(video).hide();
       _this.$camera.hide();
-      _this.$btnCapture.attr('disabled', true);
       _this.camera.powerOff();
       _this.$previewVideo.show();
+      _this.$btnCapture.attr('disabled', true);
+      _this.$btnAgain.attr('disabled', false);
+      _this.$btnUpload.attr('disabled', false);
       // ga('send', 'event', 'button-capture', 'click', location.href);
       // _this.postImage(_this.previewCanvas);
     });
@@ -115,10 +117,11 @@
     this.$btnUpload.on('click', function(e) {
       _this.$btnUpload.attr('disabled', true);
       _this.$inputFile.addClass('disabled');
-      _this.$navigateCamera.hide();
-      _this.$navigateUpload.hide();
+      // _this.$navigateCamera.hide();
+      // _this.$navigateUpload.hide();
       // ga('send', 'event', 'button-upload', 'click', location.href);
       // _this.$uploadForm.submit();
+      alert('アップロード！');
     });
     
     // ファイル選択
@@ -138,6 +141,7 @@
           _this.previewImage.draw(image, image.width, image.height);
         };
       }
+      _this.$btnUpload.attr('disabled', false);
     });
     
     // ドラッグアンドドロップ
@@ -160,6 +164,7 @@
     this.$previewVideo.hide();
     this.camera.powerOn();
     this.$camera.show();
+    this.$btnAgain.attr('disabled', true);
     this.$btnCapture.attr('disabled', false);
     this.$screenCamera.show();
   };

@@ -11,9 +11,9 @@
   ns.SetupStaircase.prototype.initialize = function() {
     // objects
     this.camera = new Staircase.Camera('#Video');
-    this.previewCanvas = new Staircase.PreviewCanvas('#Canvas');
+    this.previewCanvas = new Staircase.PreviewCanvas('#PreviewVideo');
     this.previewCanvas.type = 'camera';
-    this.previewImage = new Staircase.PreviewCanvas('#CanvasDummy');
+    this.previewImage = new Staircase.PreviewCanvas('#PreviewImage');
     this.previewImage.type = 'file';
     this.dnd = new Staircase.DragAndDrop('#DragAndDrop');
     this.modal = new Staircase.Modal({
@@ -107,6 +107,25 @@
       _this.$navigateUpload.hide();
       // ga('send', 'event', 'button-upload', 'click', location.href);
       // _this.$uploadForm.submit();
+    });
+    
+    // ファイル選択
+    window.URL = window.URL || window.webkitURL;
+    this.$inputUpload.on('change', function(e) {
+      var files = this.files;
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        var imageType = /image.*/;
+        
+        if (!file.type.match(imageType)) {
+          continue;
+        }
+        var image = new Image();
+        image.src = window.URL.createObjectURL(file); // Blob URL
+        image.onload = function(e) {
+          _this.previewImage.draw(image, image.width, image.height);
+        };
+      }
     });
     
     // ドラッグアンドドロップ

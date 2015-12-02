@@ -39,9 +39,7 @@ html(lang="ja")
         div.staircase__screen--camera#screen-camera.onlypc
           div#Camera
             video#Video(width="400" height="300" autoplay="1")
-          div#Preview
-            canvas#Canvas(width="400" height="300")
-            canvas#CanvasDummy(width="400" height="300" style="display: none;")
+          canvas#PreviewVideo(width="400" height="300")
           p.btn-shooting
             button#CaptureBtn(type="submit") キャプチャ！
           //- p.btn-navigate-upload
@@ -52,9 +50,11 @@ html(lang="ja")
         
         div.staircase__screen--upload#screen-upload.onlypc
           div#DragAndDrop
+            | DragAndDrop
           form#UploadForm(enctype="multipart/form-data")
             input(type="file" name="img" accept="image/*")
-            button#UploadBtn(type="button") アップロード！
+            button#UploadBtn(type="button") この画像をアップロード！
+          canvas#PreviewImage(width="400" height="300")
           //- p.btn-navigate-camera
           p.btn-camera
             button(type="button") やっぱカメラで撮影する

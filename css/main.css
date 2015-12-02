@@ -60,10 +60,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
-body {
+html, body {
   font-family: YuGothic, "游ゴシック", "ヒラギノ角ゴPro W3", "Hiragino Kaku Gothic Pro", Meiryo, "メイリオ", Helvetica, Arial, sans-serif;
   font-size: 10px;
 }
@@ -74,6 +74,25 @@ body * {
 
 .wrapper {
   font-size: 1.6rem;
+}
+.wrapper h1 {
+  font-size: 2.0rem;
+  padding: 1.0rem 0;
+}
+
+.staircase__dnd {
+  margin: 1.0rem;
+  padding: 1.5rem;
+  border: 2px dashed #aaa;
+  color: #aaa;
+  text-align: center;
+}
+
+.isSP .onlysp {
+  display: initial;
+}
+.isSP .onlypc {
+  display: none;
 }
 
 .modal {

@@ -51,39 +51,68 @@
       <h1>Staircase</h1>
       <div class="staircase">
         <div id="screen-select" class="staircase__screen--select">
-          <ul>
+          <ul class="onlypc">
             <li>
-              <button id="StartCamera" type="button" class="btn-camera">カメラで撮影する</button>
+              <button id="StartCamera" type="button" class="btn-navigate-camera">カメラで撮影する</button>
             </li>
             <li>
-              <button id="StartUpload" type="button" class="btn-upload">画像をアップロードする</button>
+              <button id="StartUpload" type="button" class="btn-navigate-upload">画像をアップロードする</button>
             </li>
           </ul>
+          <div class="onlysp">
+            <form id="Upload" enctype="multipart/form-data">
+              <p id="FileSelect" class="btn-upload">
+                <canvas id="file_img_canvas" class="hidden"></canvas>
+                <input type="file" name="img" accept="image/*">
+                <button type="button">カメラで撮影する／画像をアップロードする</button>
+              </p>
+            </form>
+          </div>
         </div>
-        <div id="screen-camera" class="staircase__screen--camera">
+        <div id="screen-camera" class="staircase__screen--camera onlypc">
           <div id="Camera">
             <video id="Video" width="400" height="300" autoplay="1"></video>
           </div>
-          <div id="Preview">
-            <canvas id="Canvas" width="400" height="300"></canvas>
-            <canvas id="CanvasDummy" width="400" height="300" style="display: none;"></canvas>
-          </div>
-          <p class="btn-shooting">
+          <canvas id="PreviewVideo" width="400" height="300"></canvas>
+          <p>
             <button id="CaptureBtn" type="submit">キャプチャ！</button>
+          </p>
+          <p class="btn-again">
+            <button type="button" disabled>やり直す</button>
+          </p>
+          <p class="btn-upload">
+            <button type="button" disabled>この画像をアップロード！</button>
           </p>
           <p class="btn-navigate-upload">
             <button type="button">やっぱ画像をアップロード</button>
           </p>
+          <p class="btn-cancel">
+            <button type="button">キャンセル</button>
+          </p>
         </div>
-        <div id="screen-upload" class="staircase__screen--upload">
-          <div id="DragAndDrop"></div>
-          <form id="UploadForm" enctype="multipart/form-data">
-            <input type="file" name="img" accept="image/*">
-            <button id="UploadBtn" type="button">アップロード！</button>
-          </form>
+        <div id="screen-upload" class="staircase__screen--upload onlypc">
+          <div id="DragAndDrop" class="staircase__dnd">DragAndDrop</div>
+          <p>
+            <input id="InputFile" type="file" accept="image/*">
+          </p>
+          <canvas id="PreviewImage" width="400" height="300"></canvas>
+          <p class="btn-upload">
+            <button id="UploadBtn" type="button" disabled>この画像をアップロード！</button>
+          </p>
           <p class="btn-navigate-camera">
             <button type="button">やっぱカメラで撮影する</button>
           </p>
+          <p class="btn-cancel">
+            <button type="button">キャンセル</button>
+          </p>
+        </div>
+        <div class="onlysp hidden">
+          <div id="Camera">
+            <video id="Video" width="400" height="300" autoplay="1"></video>
+          </div>
+          <canvas id="Canvas" width="400" height="300"></canvas>
+          <canvas id="CanvasDummy" width="400" height="300"></canvas>
+          <div id="DragAndDrop"></div>
         </div>
       </div>
       <div id="Modal" class="modal">

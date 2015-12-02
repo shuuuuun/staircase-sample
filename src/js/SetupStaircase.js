@@ -22,6 +22,9 @@
     });
     
     // elements
+    this.$camera = $('#Camera');
+    this.$previewVideo = $('#PreviewVideo');
+    this.$previewImage = $('#PreviewImage');
     this.$screenSelect = $('#screen-select');
     this.$screenCamera = $('#screen-camera');
     this.$screenUpload = $('#screen-upload');
@@ -29,7 +32,8 @@
     // this.$btnStartUpload = $('#StartUpload');
     this.$btnStartCamera = $('.btn-camera');
     this.$btnStartUpload = $('.btn-upload');
-    this.$btnStartCancel = $('.btn-cancel');
+    this.$btnCancel = $('.btn-cancel');
+    this.$btnAgain = $('.btn-again');
     // this.$btnSelectCamera = this.$screenSelect.find('.btn-camera');
     // this.$btnSelectUpload = this.$screenSelect.find('.btn-upload');
     this.$navigateUpload = this.$screenCamera.find('.btn-navigate-upload');
@@ -84,8 +88,13 @@
     });
     
     // キャンセルボタン
-    this.$btnStartCancel.on('click', function() {
+    this.$btnCancel.on('click', function() {
       _this.switchScreenSelect();
+    });
+    
+    // やり直すボタン
+    this.$btnAgain.on('click', function() {
+      _this.switchScreenCamera();
     });
     
     // 撮影ボタン
@@ -93,9 +102,11 @@
       e.preventDefault();
       var video = _this.camera.getVideo();
       _this.previewCanvas.draw(video);
-      $(video).hide();
+      // $(video).hide();
+      _this.$camera.hide();
       _this.$btnCapture.attr('disabled', true);
       _this.camera.powerOff();
+      _this.$previewVideo.show();
       // ga('send', 'event', 'button-capture', 'click', location.href);
       // _this.postImage(_this.previewCanvas);
     });
@@ -146,7 +157,10 @@
     this.$screenSelect.hide();
     this.$screenUpload.hide();
     this.$screenUpload.find('.error').hide();
+    this.$previewVideo.hide();
     this.camera.powerOn();
+    this.$camera.show();
+    this.$btnCapture.attr('disabled', false);
     this.$screenCamera.show();
   };
   ns.SetupStaircase.prototype.switchScreenUpload = function() {

@@ -34,14 +34,15 @@
     // this.$btnSelectUpload = this.$screenSelect.find('.btn-upload');
     this.$navigateUpload = this.$screenCamera.find('.btn-navigate-upload');
     this.$navigateCamera = this.$screenUpload.find('.btn-navigate-camera');
-    this.$uploadForm = $('#UploadForm');
+    // this.$uploadForm = $('#UploadForm');
     this.$btnCapture = $('#CaptureBtn');
     this.$btnUpload = $('#UploadBtn')
+    this.$inputFile = $('#InputFile')
     
     // this.$btnShooting = $('.btn-shooting button')
     // this.$btnUpload = $('.btn-upload button')
     
-    this.$inputUpload = this.$uploadForm.find('input[type="file"]');
+    // this.$inputUpload = this.$uploadForm.find('input[type="file"]');
     this.$modalError = this.modal.$el.find('.modal__error');
     this.modalCloseTargetSelector = '.modal-bg, .btn-close';
     
@@ -102,7 +103,7 @@
     // アップロードボタン
     this.$btnUpload.on('click', function(e) {
       _this.$btnUpload.attr('disabled', true);
-      _this.$inputUpload.addClass('disabled');
+      _this.$inputFile.addClass('disabled');
       _this.$navigateCamera.hide();
       _this.$navigateUpload.hide();
       // ga('send', 'event', 'button-upload', 'click', location.href);
@@ -111,7 +112,7 @@
     
     // ファイル選択
     window.URL = window.URL || window.webkitURL;
-    this.$inputUpload.on('change', function(e) {
+    this.$inputFile.on('change', function(e) {
       var files = this.files;
       for (var i = 0; i < files.length; i++) {
         var file = files[i];

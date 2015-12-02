@@ -49,12 +49,16 @@ html(lang="ja")
             button(type="button") キャンセル
         
         div.staircase__screen--upload#screen-upload.onlypc
-          div#DragAndDrop
+          div#DragAndDrop.staircase__dnd
             | DragAndDrop
-          form#UploadForm(enctype="multipart/form-data")
+          //- form#UploadForm(enctype="multipart/form-data")
             input(type="file" name="img" accept="image/*")
             button#UploadBtn(type="button") この画像をアップロード！
+          p
+            input#InputFile(type="file" accept="image/*")
           canvas#PreviewImage(width="400" height="300")
+          p
+            button#UploadBtn(type="button") この画像をアップロード！
           //- p.btn-navigate-camera
           p.btn-camera
             button(type="button") やっぱカメラで撮影する

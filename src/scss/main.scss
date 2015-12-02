@@ -31,6 +31,19 @@ body * {
 
 
 // ------------------------------
+// staircase
+// ------------------------------
+.staircase {}
+.staircase__dnd {
+  margin: 1.0rem;
+  padding: 1.5rem;
+  border: 2px dashed #aaa;
+  color: #aaa;
+  text-align: center;
+}
+
+
+// ------------------------------
 // sp
 // ------------------------------
 .isSP {

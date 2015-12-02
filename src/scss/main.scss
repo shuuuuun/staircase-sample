@@ -15,7 +15,7 @@ $MAIN_FONT: YuGothic, '游ゴシック', "ヒラギノ角ゴPro W3", "Hiragino K
 }
 
 // ------------------------------
-body {
+html, body {
   font-family: $MAIN_FONT;
   font-size: 10px;
 }

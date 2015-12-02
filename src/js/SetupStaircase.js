@@ -66,8 +66,9 @@
     }
     
     // screen制御
-    this.$screenCamera.hide();
-    this.$screenUpload.hide();
+    // this.$screenCamera.hide();
+    // this.$screenUpload.hide();
+    this.switchScreenSelect();
     
     // 撮影スタートボタン
     this.$btnStartCamera.on('click', function(e) {
@@ -79,6 +80,11 @@
     this.$btnStartUpload.on('click', function() {
       _this.switchScreenUpload();
       // ga('send', 'event', 'screen-upload', 'show', 'from-screen-select');
+    });
+    
+    // キャンセルボタン
+    this.$btnStartCancel.on('click', function() {
+      _this.switchScreenSelect();
     });
     
     // 撮影ボタン
@@ -129,6 +135,14 @@
     this.$screenCamera.find('.error').hide();
     this.camera.powerOff();
     this.$screenUpload.show();
+  };
+  ns.SetupStaircase.prototype.switchScreenSelect = function() {
+    this.$screenCamera.hide();
+    this.$screenUpload.hide();
+    this.$screenCamera.find('.error').hide();
+    this.$screenUpload.find('.error').hide();
+    this.camera.powerOff();
+    this.$screenSelect.show();
   };
   
   ns.SetupStaircase.prototype.postImage = function(instance) {

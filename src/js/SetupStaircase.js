@@ -42,23 +42,20 @@
     // this.$btnUpload = $('.btn-upload button')
     // this.$inputUpload = this.$uploadForm.find('input[type="file"]');
     
+    // カメラがあるか
+    if (this.camera.isSupport == null) {
+      this.$btnNavigateCamera.hide();
+    }
+    
+    // screen制御
+    this.switchScreenSelect();
+    
     // event
     this.eventify();
   };
   
   ns.SetupStaircase.prototype.eventify = function() {
     var _this = this;
-    
-    // カメラがあるか
-    if (this.camera.isSupport == null) {
-      this.$btnNavigateCamera.hide();
-      // this.$navigateCamera.hide();
-    }
-    
-    // screen制御
-    // this.$screenCamera.hide();
-    // this.$screenUpload.hide();
-    this.switchScreenSelect();
     
     // 撮影スタートボタン
     this.$btnNavigateCamera.on('click', function(e) {
@@ -87,7 +84,6 @@
       e.preventDefault();
       var video = _this.camera.getVideo();
       _this.previewCanvas.draw(video);
-      // $(video).hide();
       _this.$camera.hide();
       _this.camera.powerOff();
       _this.$previewVideo.show();
@@ -102,8 +98,6 @@
     this.$btnUpload.on('click', function(e) {
       _this.$btnUpload.attr('disabled', true);
       _this.$inputFile.addClass('disabled');
-      // _this.$navigateCamera.hide();
-      // _this.$navigateUpload.hide();
       // ga('send', 'event', 'button-upload', 'click', location.href);
       // _this.$uploadForm.submit();
       alert('アップロード！');

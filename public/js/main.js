@@ -1,1 +1,1 @@
-!function(n,t){var e=n.App=n.App||{};$(n),new e.Util;$(function(){new e.SetupStaircase})}(this,document);
+!function(e,n){var o=e.App=e.App||{};$(e),new o.Util;$(function(){o.ua.isSP?$(".onlypc").remove():$(".onlysp").remove(),new o.SetupStaircase})}(this,document);

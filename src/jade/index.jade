@@ -22,60 +22,58 @@ html(lang="ja")
     div.wrapper
       h1 Staircase
       
-      div.staircase
-        div.staircase__screen--select#screen-select
-          ul.onlypc
-            li
-              button#StartCamera.btn-navigate-camera(type="button") カメラで撮影する
-            li
-              button#StartUpload.btn-navigate-upload(type="button") 画像をアップロードする
-          div.onlysp
-            form#Upload(enctype="multipart/form-data")
-              p#FileSelect.btn-upload
-                canvas#file_img_canvas.hidden
-                input(type="file" name="img" accept="image/*")
-                button(type="button") カメラで撮影する／画像をアップロードする
+      div.container
+        div.staircase.onlypc
+          div.staircase__screen--select#screen-select
+            ul
+              li: button.btn-navigate-camera(type="button") WEBカメラで投稿
+              li: button.btn-navigate-upload(type="button") 写真で投稿
+          
+          div.staircase__screen--camera#screen-camera.screen--modal
+            div.modal__bg
+            div.modal__content
+              p.modal__error
+              div.modal__close ×
+              div#Camera.screen-camera__camera
+                video#Video(width="730" height="400" autoplay="1")
+              canvas#PreviewVideo.screen-camera__preview(width="730" height="400")
+              p.screen-camera__capture
+                button.btn-capture(type="submit") パシャ！
+              p.screen-camera__again
+                button.btn-again(type="button" disabled) 撮り直す
+              p.screen-camera__upload
+                button.btn-upload(type="button" disabled) アップロード！
+              p.screen-camera__nav
+                button.btn-navigate-upload(type="button") やっぱ画像をアップロード
+              p.screen-camera__cancel
+                button.btn-cancel(type="button") キャンセル
+          
+          div.staircase__screen--upload#screen-upload.screen--modal
+            div.modal__bg
+            div.modal__content
+              p.modal__error
+              div.modal__close ×
+              div#DragAndDrop.screen-upload__dnd DragAndDrop
+              p.screen-upload__input
+                input.input-file(type="file" accept="image/*")
+              canvas#PreviewImage.screen-upload__preview(width="730" height="400")
+              p.screen-upload__upload
+                button.btn-upload(type="button" disabled) アップロード！
+              p.screen-upload__nav
+                button.btn-navigate-camera(type="button") やっぱカメラで撮影する
+              p.screen-upload__cancel
+                button.btn-cancel(type="button") キャンセル
         
-        div.staircase__screen--camera#screen-camera.onlypc
-          div#Camera
-            video#Video(width="400" height="300" autoplay="1")
-          canvas#PreviewVideo(width="400" height="300")
-          p
-            button#CaptureBtn(type="submit") キャプチャ！
-          p.btn-again
-            button(type="button" disabled) やり直す
-          p.btn-upload
-            button(type="button" disabled) この画像をアップロード！
-          p.btn-navigate-upload
-            button(type="button") やっぱ画像をアップロード
-          p.btn-cancel
-            button(type="button") キャンセル
-        
-        div.staircase__screen--upload#screen-upload.onlypc
-          div#DragAndDrop.staircase__dnd
-            | DragAndDrop
-          //- form#UploadForm(enctype="multipart/form-data")
-            input(type="file" name="img" accept="image/*")
-            button#UploadBtn(type="button") この画像をアップロード！
-          p
-            input#InputFile(type="file" accept="image/*")
-          canvas#PreviewImage(width="400" height="300")
-          p.btn-upload
-            button#UploadBtn(type="button" disabled) この画像をアップロード！
-          p.btn-navigate-camera
-            button(type="button") やっぱカメラで撮影する
-          p.btn-cancel
-            button(type="button") キャンセル
-        
-        div.onlysp.hidden
-          div#Camera
-            video#Video(width="400" height="300" autoplay="1")
-          canvas#Canvas(width="400" height="300")
-          canvas#CanvasDummy(width="400" height="300")
-          div#DragAndDrop
+        div.staircase--sp.onlysp
+          div.staircase-sp__upload
+            label(for="inputFileSP")
+              | 写真を投稿
+              input#inputFileSP.input-file(type="file" accept="image/*" style="display: none;")
+          //- csanvas#PreviewImageSP.staircase-sp__preview(width="730" height="400")
+          div#PreviewImageSP.staircase-sp__preview
       
       
-      .container
+      
         //- div
           ul
             li.onlypc

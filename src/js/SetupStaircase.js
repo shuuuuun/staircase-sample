@@ -88,7 +88,7 @@
     this.$btnUpload.on('click', function(e) {
       _this.$btnUpload.attr('disabled', true);
       _this.$inputFile.addClass('disabled');
-      alert('アップロード！');
+      alert('アップロード！（してない）');
     });
     
     // ファイル選択（input#File）

@@ -56,8 +56,8 @@ html(lang="ja")
               div#DragAndDrop.screen-upload__dnd DragAndDrop
               p.screen-upload__input
                 input#File.input-file(type="file" accept="image/*")
-                //- ↑Staircaseのファイル選択の機能を使うには#Fileでなくてはならない
-              //- canvas#PreviewImage.screen-upload__preview(width="100%" height="400")
+                //- ↑Staircaseのファイル選択の機能を使うには#Fileでなくてはならない。なんとかしてほしい。
+              //- canvas#PreviewImage.screen-upload__preview(width="100%" height="400") //- previewにcanvasを使う場合
               div#PreviewImage.screen-upload__preview
               p.screen-upload__upload
                 button.btn-upload(type="button" disabled) アップロード！
@@ -69,6 +69,6 @@ html(lang="ja")
         div.staircase--sp.onlysp
           div.staircase-sp__upload
             input.input-file(type="file" accept="image/*")
-          //- csanvas#PreviewImageSP.staircase-sp__preview(width="730" height="400")
+          //- csanvas#PreviewImageSP.staircase-sp__preview(width="730" height="400") //- previewにcanvasを使う場合
           div#PreviewImageSP.staircase-sp__preview
       

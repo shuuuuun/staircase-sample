@@ -40,6 +40,10 @@
     this.$btnUpload = $('.btn-upload');
     this.$inputFile = $('.input-file');
     
+    // const
+    this.previewImageWidth = 400;
+    this.previewImageHeight = 400;
+    
     // screen制御
     this.switchScreenSelect();
     
@@ -106,7 +110,8 @@
         var image = new Image();
         image.src = window.URL.createObjectURL(file); // Blob URL
         image.onload = function(e) {
-          if (ns.ua.isPC) _this.previewImage.draw(image, image.width, image.height);
+          // if (ns.ua.isPC) _this.previewImage.draw(image, image.width, image.height);
+          _this.previewImage.draw(image, _this.previewImageWidth, _this.previewImageHeight);
           // if (ns.ua.isSP) _this.previewImageSP.draw(image, image.width, image.height);
           if (ns.ua.isSP) _this.$previewImageSP.append(image);
         };
@@ -116,7 +121,8 @@
     
     // ドラッグアンドドロップ
     this.dnd.on(Events.DND_LOAD_IMG, function(e, image, file) {
-      _this.previewImage.draw(image, image.width, image.height);
+      // _this.previewImage.draw(image, image.width, image.height);
+      _this.previewImage.draw(image, _this.previewImageWidth, _this.previewImageHeight);
       // _this.postImage(_this.previewImage);
     });
     
@@ -137,6 +143,7 @@
     this.$camera.show();
     this.$btnAgain.attr('disabled', true);
     this.$btnCapture.attr('disabled', false);
+    this.$btnUpload.attr('disabled', true);
     this.$screenCamera.show();
   };
   ns.SetupStaircase.prototype.switchScreenUpload = function() {

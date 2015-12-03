@@ -43,7 +43,7 @@ body * {
 .staircase__screen--camera {}
 .staircase__screen--upload {}
 .screen--modal {
-  // @extend .modal;
+  @extend .modal;
 }
 .screen-upload__dnd {
   margin: 1.0rem;
@@ -58,11 +58,9 @@ body * {
 // sp
 // ------------------------------
 .isSP {
-  
   .onlysp {
     display: initial;
   }
-  
   .onlypc {
     display: none;
   }
@@ -91,19 +89,14 @@ body * {
   position: absolute;
   top: 0;
   left: 0;
-  position: fixed;
 }
 .modal__content {
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
+  margin: 0 auto;
   max-width: 730px;
   text-align: center;
-  // background-color: #fff;
-  padding: 2.5rem;
+  background-color: #fff;
+  padding: 2.0rem;
 }
 .modal__close {
   cursor: pointer;

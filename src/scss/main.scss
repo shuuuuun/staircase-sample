@@ -85,7 +85,7 @@ body * {
 .modal {
   display: none;
   width: 100%;
-  height: 100%;
+  height: 100% !important; // Staircaseで上書きされてしまうので!important。後で別の対策にする。
   position: absolute;
   top: 0;
   left: 0;

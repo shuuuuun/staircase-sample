@@ -80,6 +80,13 @@ body * {
   padding: 1.0rem 0;
 }
 
+.screen-camera__camera video {
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
 .screen-upload__preview img {
   max-width: 100%;
 }

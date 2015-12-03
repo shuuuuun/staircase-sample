@@ -41,6 +41,11 @@ body * {
 .staircase {}
 .staircase__screen--select {}
 .staircase__screen--camera {}
+.screen-camera__camera {
+  video {
+    @include transform(rotateY(180deg));
+  }
+}
 .staircase__screen--upload {}
 .screen-upload__preview {
   img {

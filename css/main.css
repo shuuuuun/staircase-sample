@@ -80,7 +80,7 @@ body * {
   padding: 1.0rem 0;
 }
 
-.staircase__dnd {
+.screen-upload__dnd {
   margin: 1.0rem;
   padding: 1.5rem;
   border: 2px dashed #aaa;
@@ -115,7 +115,6 @@ body * {
   top: 0;
   left: 0;
   position: fixed;
-  z-index: 98;
 }
 
 .modal__content {
@@ -125,12 +124,12 @@ body * {
   left: 0;
   right: 0;
   bottom: 0;
-  width: 300px;
+  max-width: 730px;
   text-align: center;
-  background-color: #fff;
   padding: 2.5rem;
 }
 
-.modal_close {
+.modal__close {
   cursor: pointer;
+  text-align: right;
 }

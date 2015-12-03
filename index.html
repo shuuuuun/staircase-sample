@@ -65,11 +65,11 @@
             <div class="modal__bg"></div>
             <div class="modal__content">
               <p class="modal__error"></p>
-              <div class="modal__close">×</div>
+              <div class="modal__close">×閉じる</div>
               <div id="Camera" class="screen-camera__camera">
-                <video id="Video" width="730" height="400" autoplay="1"></video>
+                <video id="Video" width="100%" height="400" autoplay="1"></video>
               </div>
-              <canvas id="PreviewVideo" width="730" height="400" class="screen-camera__preview"></canvas>
+              <canvas id="PreviewVideo" width="100%" height="400" class="screen-camera__preview"></canvas>
               <p class="screen-camera__capture">
                 <button type="submit" class="btn-capture">パシャ！</button>
               </p>
@@ -91,12 +91,12 @@
             <div class="modal__bg"></div>
             <div class="modal__content">
               <p class="modal__error"></p>
-              <div class="modal__close">×</div>
+              <div class="modal__close">×閉じる</div>
               <div id="DragAndDrop" class="screen-upload__dnd">DragAndDrop</div>
               <p class="screen-upload__input">
-                <input type="file" accept="image/*" class="input-file">
+                <input id="File" type="file" accept="image/*" class="input-file">
               </p>
-              <canvas id="PreviewImage" width="730" height="400" class="screen-upload__preview"></canvas>
+              <div id="PreviewImage" class="screen-upload__preview"></div>
               <p class="screen-upload__upload">
                 <button type="button" disabled class="btn-upload">アップロード！</button>
               </p>
@@ -111,9 +111,7 @@
         </div>
         <div class="staircase--sp onlysp">
           <div class="staircase-sp__upload">
-            <label for="inputFileSP">写真を投稿
-              <input id="inputFileSP" type="file" accept="image/*" style="display: none;" class="input-file">
-            </label>
+            <input type="file" accept="image/*" class="input-file">
           </div>
           <div id="PreviewImageSP" class="staircase-sp__preview"></div>
         </div>

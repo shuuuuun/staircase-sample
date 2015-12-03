@@ -56,7 +56,9 @@ html(lang="ja")
               div#DragAndDrop.screen-upload__dnd DragAndDrop
               p.screen-upload__input
                 input#File.input-file(type="file" accept="image/*")
-              canvas#PreviewImage.screen-upload__preview(width="100%" height="400")
+                //- ↑Staircaseのファイル選択の機能を使うには#Fileでなくてはならない
+              //- canvas#PreviewImage.screen-upload__preview(width="100%" height="400")
+              div#PreviewImage.screen-upload__preview
               p.screen-upload__upload
                 button.btn-upload(type="button" disabled) アップロード！
               p.screen-upload__nav

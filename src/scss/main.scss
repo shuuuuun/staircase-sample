@@ -42,6 +42,11 @@ body * {
 .staircase__screen--select {}
 .staircase__screen--camera {}
 .staircase__screen--upload {}
+.screen-upload__preview {
+  img {
+    max-width: 100%;
+  }
+}
 .screen--modal {
   @extend .modal;
 }

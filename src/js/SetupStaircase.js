@@ -12,8 +12,8 @@
     // objects
     this.camera = new Staircase.Camera('#Video');
     this.previewCanvas = new Staircase.PreviewCanvas('#PreviewVideo');
-    this.previewImage = new Staircase.PreviewCanvas('#PreviewImage');
-    // this.previewImageSP = new Staircase.PreviewCanvas('#PreviewImageSP');
+    // this.previewImage = new Staircase.PreviewCanvas('#PreviewImage'); // previewにcanvasを使う場合
+    // this.previewImageSP = new Staircase.PreviewCanvas('#PreviewImageSP'); // previewにcanvasを使う場合
     this.dnd = new Staircase.DragAndDrop('#DragAndDrop');
     this.modal1 = new Staircase.Modal({
       id: '#screen-camera',
@@ -39,10 +39,6 @@
     this.$btnCapture = $('.btn-capture');
     this.$btnUpload = $('.btn-upload');
     this.$inputFile = $('.input-file');
-    
-    // const
-    this.previewImageWidth = 400;
-    this.previewImageHeight = 400;
     
     // screen制御
     this.switchScreenSelect();
@@ -85,14 +81,12 @@
       _this.$btnCapture.attr('disabled', true);
       _this.$btnAgain.attr('disabled', false);
       _this.$btnUpload.attr('disabled', false);
-      // _this.postImage(_this.previewCanvas);
     });
     
     // アップロードボタン
     this.$btnUpload.on('click', function(e) {
       _this.$btnUpload.attr('disabled', true);
       _this.$inputFile.addClass('disabled');
-      // _this.$uploadForm.submit();
       alert('アップロード！');
     });
     
@@ -103,9 +97,10 @@
     
     // ドラッグアンドドロップ
     this.dnd.on(Events.DND_LOAD_IMG, function(e, image, file) {
-      // _this.previewImage.draw(image, image.width, image.height);
-      _this.previewImage.draw(image, _this.previewImageWidth, _this.previewImageHeight);
-      // _this.postImage(_this.previewImage);
+      // if (ns.ua.isPC) _this.previewImage.draw(image, image.width, image.height); // canvasを使う場合
+      if (ns.ua.isPC) _this.$previewImage.append(image);
+      // if (ns.ua.isSP) _this.previewImageSP.draw(image, image.width, image.height); // canvasを使う場合
+      if (ns.ua.isSP) _this.$previewImageSP.append(image);
     });
     
     // モーダル

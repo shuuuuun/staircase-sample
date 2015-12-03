@@ -45,6 +45,7 @@
     
     // event
     this.eventify();
+    if (ns.ua.isSP) this.eventifySP();
   };
   
   ns.SetupStaircase.prototype.eventify = function() {
@@ -146,6 +147,31 @@
       success: function(response) {
       },
       complete: function() {}
+    });
+  };
+  
+  ns.SetupStaircase.prototype.eventifySP = function(instance) {
+    var _this = this;
+    // ファイル選択
+    window.URL = window.URL || window.webkitURL;
+    this.$inputFile.on('change', function(e) {
+      var files = this.files;
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        var imageType = /image.*/;
+
+        if (!file.type.match(imageType)) {
+          continue;
+        }
+        var image = new Image();
+        image.src = window.URL.createObjectURL(file); // Blob URL
+        image.onload = function(e) {
+          // if (ns.ua.isPC) _this.previewImage.draw(image, image.width, image.height); // canvasを使う場合
+          if (ns.ua.isPC) _this.$previewImage.append(image);
+          // if (ns.ua.isSP) _this.previewImageSP.draw(image, image.width, image.height); // canvasを使う場合
+          if (ns.ua.isSP) _this.$previewImageSP.append(image);
+        };
+      }
     });
   };
   

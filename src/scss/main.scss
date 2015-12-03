@@ -69,6 +69,13 @@ body * {
   .onlypc {
     display: none;
   }
+  .staircase--sp {}
+  .staircase-sp__upload {}
+  .staircase-sp__preview {
+    img {
+      max-width: 100%;
+    }
+  }
 }
 
 

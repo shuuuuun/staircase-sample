@@ -6,10 +6,10 @@
   
   $(function(){
     if (ns.ua.isSP) {
-      $('.onlypc').remove();
+      // $('.onlypc').remove();
     }
     else {
-      $('.onlysp').remove();
+      // $('.onlysp').remove();
     }
     
     // webcam & upload

@@ -96,26 +96,8 @@
       alert('アップロード！');
     });
     
-    // ファイル選択
-    window.URL = window.URL || window.webkitURL;
-    this.$inputFile.on('change', function(e) {
-      var files = this.files;
-      for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        var imageType = /image.*/;
-        
-        if (!file.type.match(imageType)) {
-          continue;
-        }
-        var image = new Image();
-        image.src = window.URL.createObjectURL(file); // Blob URL
-        image.onload = function(e) {
-          // if (ns.ua.isPC) _this.previewImage.draw(image, image.width, image.height);
-          _this.previewImage.draw(image, _this.previewImageWidth, _this.previewImageHeight);
-          // if (ns.ua.isSP) _this.previewImageSP.draw(image, image.width, image.height);
-          if (ns.ua.isSP) _this.$previewImageSP.append(image);
-        };
-      }
+    // ファイル選択（input#File）
+    this.dnd.on(Events.DND_SELECT, function(e, image, file) {
       _this.$btnUpload.attr('disabled', false);
     });
     
